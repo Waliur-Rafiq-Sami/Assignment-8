@@ -6,6 +6,7 @@ import Root from "./components/Root";
 import Home from "./components/Home/Home";
 import ListedBook from "./components/ListedBook/ListedBook";
 import ListedBooksSection from "./components/ListedBooksSection/ListedBooksSection";
+import ReadBooks from "./components/ListedBooksSection/ReadBooks";
 
 const router = createBrowserRouter([
   {
@@ -24,6 +25,20 @@ const router = createBrowserRouter([
       {
         path: "/listed-books",
         element: <ListedBooksSection></ListedBooksSection>,
+        children: [
+          {
+            path: "/listed-books",
+            element: <ReadBooks></ReadBooks>,
+          },
+          {
+            path: "/listed-books/wishlist",
+            element: (
+              <>
+                <div>dfagfhgsh</div>
+              </>
+            ),
+          },
+        ],
       },
     ],
   },
