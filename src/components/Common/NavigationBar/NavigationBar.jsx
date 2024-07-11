@@ -4,8 +4,8 @@ import SingleLink from "./SingleLink";
 const NavigationBar = () => {
   const link = (
     <>
-      {<SingleLink name={"Home"} to={"/"}></SingleLink>}
-      {<SingleLink name={"Listed Books"} toGo={"/listedBook"}></SingleLink>}
+      {<SingleLink name={"Home"} toGo={"/"}></SingleLink>}
+      {<SingleLink name={"Listed Books"} toGo={"/listed-books"}></SingleLink>}
       {<SingleLink name={"Books"} toGo={"/listedBook"}></SingleLink>}
     </>
   );

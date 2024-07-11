@@ -1,4 +1,5 @@
 import heroImg from "../../../assets/HomeIMG/img.jpg";
+import { NavLink } from "react-router-dom";
 
 const HeroSection = () => {
   return (
@@ -16,9 +17,11 @@ const HeroSection = () => {
             Your Gateway to Endless Literary Adventures! Discover, read, and
             share your favorite books with a community of passionate readers.
           </p>
-          <button className="btn bg-gradient-to-r from-[#f86eb3] to-[#51dff8] text-lg text-white">
-            View the List
-          </button>
+          <NavLink to="/listed-books">
+            <button className="btn bg-gradient-to-r from-[#f86eb3] to-[#51dff8] text-lg text-white">
+              View the List
+            </button>
+          </NavLink>
         </div>
       </div>
     </div>

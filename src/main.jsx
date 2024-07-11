@@ -17,12 +17,13 @@ const router = createBrowserRouter([
       },
       {
         path: "/book/:id",
+        loader: (id) => fetch(`../listed-books/${id}`),
         element: <ListedBook></ListedBook>,
       },
-      // {
-      //   path: "/book/:id",
-      //   element: <div>Inside Book</div>,
-      // },
+      {
+        path: "/listed-books",
+        element: <div>/listed-books</div>,
+      },
     ],
   },
 ]);
