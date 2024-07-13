@@ -1,42 +1,37 @@
+import { useEffect, useState } from "react";
 import { useLoaderData } from "react-router-dom";
 import {
   getItemByLocalStorage,
   removeItem,
 } from "../Common/LocatStorage/LocalStorage";
 import SingleReadBookCart from "./SingleReadBookCart";
-import { useEffect, useState } from "react";
 import { toast, ToastContainer } from "react-toastify";
 
-const ReadBooks = () => {
-  const allBookData = useLoaderData();
-  const [rb, setRb] = useState([]);
+const WishlistBooks = () => {
+  const allBookInfo = useLoaderData();
+
+  const [wishBook, setWishBooks] = useState([]);
 
   useEffect(() => {
-    const getReadBook = getItemByLocalStorage("read");
-    const readBooks = allBookData.filter((book) =>
-      getReadBook.includes(book.id)
-    );
-    setRb(readBooks);
-  }, [allBookData]);
+    const wishlist = getItemByLocalStorage("wish-list");
+    const wish = allBookInfo.filter((w) => wishlist.includes(w.id));
+    setWishBooks(wish);
+  }, [allBookInfo]);
+
   const notify = () => toast.error("Removed");
-
   const removeReadBook = (id) => {
-    removeItem("read", id);
-    const newRb = rb.filter((i) => i.id !== id);
+    removeItem("wish-list", id);
+    const newRb = wishBook.filter((i) => i.id !== id);
     notify();
-    setRb(newRb);
-  };
-
-  const sortByreating = () => {
-    console.log("d");
+    setWishBooks(newRb);
   };
 
   return (
     <>
       <ToastContainer></ToastContainer>
-      {rb.length ? (
+      {wishBook.length ? (
         <div>
-          {rb.map((book) => (
+          {wishBook.map((book) => (
             <SingleReadBookCart
               key={book.id}
               book={book}
@@ -50,8 +45,8 @@ const ReadBooks = () => {
             src="https://i.ibb.co/D74NdyQ/Shared-Screenshot-removebg-preview.png"
             alt=""
           />
-          <h1 className="mb-36 font-semibold font-serif text-red-400 md:text-4xl text-xl">
-            Please, add a book to read.
+          <h1 className="mb-36 font-semibold font-serif text-blue-400 md:text-4xl text-xl">
+            Please, add a book to your Wishlist.
           </h1>
         </div>
       )}
@@ -59,4 +54,4 @@ const ReadBooks = () => {
   );
 };
 
-export default ReadBooks;
+export default WishlistBooks;

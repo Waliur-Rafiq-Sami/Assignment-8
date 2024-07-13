@@ -6,6 +6,12 @@ const getItemByLocalStorage = (name) => {
   return JSON.parse(item);
 };
 
+const removeItem = (name, id) => {
+  const get = getItemByLocalStorage(name);
+  const beforeRemove = get.filter((i) => i !== id);
+  localStorage.setItem(name, JSON.stringify(beforeRemove));
+};
+
 const saveIdLocalStorage = (name, bookId, tostFun) => {
   const save = getItemByLocalStorage(name);
   const isInclude = save.find((id) => id === bookId);
@@ -21,4 +27,4 @@ const saveIdLocalStorage = (name, bookId, tostFun) => {
   isInclude ? tostFun(false) : (save.push(bookId), tostFun(true));
   localStorage.setItem(name, JSON.stringify(save));
 };
-export { getItemByLocalStorage, saveIdLocalStorage };
+export { getItemByLocalStorage, saveIdLocalStorage, removeItem };

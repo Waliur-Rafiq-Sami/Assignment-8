@@ -5,7 +5,12 @@ const NavigationBar = () => {
   const link = (
     <>
       {<SingleLink name={"Home"} toGo={"/"}></SingleLink>}
-      {<SingleLink name={"Listed Books"} toGo={"/listed-books"}></SingleLink>}
+      {
+        <SingleLink
+          name={"Listed Books"}
+          toGo={"/listed-books/read"}
+        ></SingleLink>
+      }
       {<SingleLink name={"Books"} toGo={"/listedBook"}></SingleLink>}
     </>
   );

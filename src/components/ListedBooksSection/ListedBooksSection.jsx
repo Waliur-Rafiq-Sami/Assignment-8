@@ -14,14 +14,19 @@ const ListedBooksSection = () => {
             open or close
           </summary>
           <ul className="dropdown-content bg-none rounded-lg z-[1] -ml-20 border-2  p-3 -mt-1 border-green-500 space-y-2">
-            <li className="border-b-2 pr-10 border-green-400">
+            <li className="border-b-2 pr-10 border-green-400 text-start">
               <button className="hover:text-red-500 font-semibold">
-                Item 1
+                Rating
               </button>
             </li>
-            <li className="border-b-2 pr-10 border-green-400">
+            <li className="border-b-2 pr-10 border-green-400  text-start">
               <button className="hover:text-red-500 font-semibold">
-                Item 1
+                Number of pages
+              </button>
+            </li>
+            <li className="border-b-2 pr-10 border-green-400  text-start">
+              <button className="hover:text-red-500 font-semibold">
+                publisher Year
               </button>
             </li>
           </ul>
@@ -33,10 +38,24 @@ const ListedBooksSection = () => {
       <Tabs className="text-xl">
         <TabList>
           <Tab>
-            <NavLink to="/listed-books">Title 1</NavLink>
+            <NavLink
+              className={({ isActive }) =>
+                isActive ? "text-[#2cf336]" : "text-black"
+              }
+              to="/listed-books/read"
+            >
+              Read Books
+            </NavLink>
           </Tab>
           <Tab>
-            <NavLink to="/listed-books/wishlist">Title 2</NavLink>
+            <NavLink
+              className={({ isActive }) =>
+                isActive ? "text-[#2cf336]" : "text-black"
+              }
+              to="/listed-books/wishlist"
+            >
+              Wishlist Books
+            </NavLink>
           </Tab>
         </TabList>
         <TabPanel>{<Outlet />}</TabPanel>

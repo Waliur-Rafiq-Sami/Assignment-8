@@ -4,7 +4,9 @@ const Footer = () => {
     <div className="bg-base-200">
       <footer className="footer container mx-auto text-base-content p-10">
         <aside>
-          <img className="w-48 rounded-full" src={logoImg} alt="" />
+          <a href="/">
+            <img className="w-48 rounded-full" src={logoImg} alt="" />
+          </a>
           <p>
             <span className="font-bold text-3xl pl-2">Fire BooK</span>
             <br />

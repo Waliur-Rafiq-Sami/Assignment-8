@@ -17,7 +17,7 @@ const HeroSection = () => {
             Your Gateway to Endless Literary Adventures! Discover, read, and
             share your favorite books with a community of passionate readers.
           </p>
-          <NavLink to="/listed-books">
+          <NavLink to="/listed-books/read">
             <button className="btn bg-gradient-to-r from-[#f86eb3] to-[#51dff8] text-lg text-white">
               View the List
             </button>
