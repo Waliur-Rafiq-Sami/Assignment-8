@@ -1,4 +1,4 @@
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useLocation } from "react-router-dom";
 import {
   getItemByLocalStorage,
   removeItem,
@@ -8,7 +8,11 @@ import { useEffect, useState } from "react";
 import { toast, ToastContainer } from "react-toastify";
 
 const ReadBooks = () => {
+  const location = useLocation();
+  const shortDesindingOrder = location.state;
+
   const allBookData = useLoaderData();
+
   const [rb, setRb] = useState([]);
 
   useEffect(() => {
@@ -19,7 +23,6 @@ const ReadBooks = () => {
     setRb(readBooks);
   }, [allBookData]);
   const notify = () => toast.error("Removed");
-
   const removeReadBook = (id) => {
     removeItem("read", id);
     const newRb = rb.filter((i) => i.id !== id);
@@ -27,9 +30,30 @@ const ReadBooks = () => {
     setRb(newRb);
   };
 
-  const sortByreating = () => {
-    console.log("d");
-  };
+  const [books, setBooks] = useState(rb);
+
+  useEffect(() => {
+    if (shortDesindingOrder) {
+      if (shortDesindingOrder.name === "rating") {
+        const sortRb = rb.sort((a, b) => b.rating - a.rating);
+        if (sortRb) {
+          setBooks(sortRb);
+        }
+      } else if (shortDesindingOrder.name === "Number-of-pages") {
+        const sortRb = rb.sort((a, b) => b.totalPages - a.totalPages);
+        if (sortRb) {
+          setBooks(sortRb);
+        }
+      } else if (shortDesindingOrder.name === "publisher-Year") {
+        const sortRb = rb.sort(
+          (a, b) => b.yearOfPublishing - a.yearOfPublishing
+        );
+        if (sortRb) {
+          setBooks(sortRb);
+        }
+      }
+    }
+  }, [shortDesindingOrder, rb]);
 
   return (
     <>

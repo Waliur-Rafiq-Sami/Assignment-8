@@ -4,6 +4,7 @@ import { NavLink } from "react-router-dom";
 
 const SingleReadBookCart = ({ book, removeReadBook }) => {
   const {
+    yearOfPublishing,
     id,
     image,
     bookName,
@@ -45,14 +46,17 @@ const SingleReadBookCart = ({ book, removeReadBook }) => {
               </span>{" "}
               Publisher:{" "}
             </p>
-            <p className="ml-2"> {publisher}</p>
+            <p className="ml-2">
+              {" "}
+              {publisher} {yearOfPublishing}
+            </p>
           </div>
           <div className="flex gap-1 items-center">
             <span>
               <IoNewspaperOutline className="text-gray-600" />
             </span>{" "}
             <p className="text-xl font-semibold ">Page: </p>
-            <p className=""> {publisher}</p>
+            <p className=""> {totalPages}</p>
           </div>
         </div>
         <div className="flex gap-3 my-3 text-base ">
@@ -83,35 +87,3 @@ const SingleReadBookCart = ({ book, removeReadBook }) => {
 };
 
 export default SingleReadBookCart;
-
-/**
- 
-  <div className="card border-2 m-2 p-6">
-        <figure className="bg-gray-100 rounded-xl pb-5">
-          <img className="w-auto xl:h-80 md:h-64" src={image} />
-        </figure>
-        <div className="space-y-2">
-          <div className="flex gap-3 my-5">
-            <span className="bg-gray-100 px-4 py-2 rounded-full text-[#2aee3a] font-bold tracking-wider">
-              {tags[0]}
-            </span>
-            <span className="bg-gray-100 px-4 py-2 rounded-full text-[#2aee3a] font-bold tracking-wider">
-              {tags[1]}
-            </span>
-          </div>
-          <h2 className="text-3xl font-semibold pl-3">{bookName}</h2>
-          <p className="pl-3 font-semibold">
-            <span className="font-bold text-gray-500">Writen By :</span>{" "}
-            {author}
-          </p>
-          <div>
-            <div className="flex justify-between ml-3 border-t-2 mt-3 pt-2">
-              <span>{category}</span>
-              <p className="flex justify-center items-center gap-1">
-                {ratingFuction()}
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
- */

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useLocation } from "react-router-dom";
 import {
   getItemByLocalStorage,
   removeItem,
@@ -8,6 +8,8 @@ import SingleReadBookCart from "./SingleReadBookCart";
 import { toast, ToastContainer } from "react-toastify";
 
 const WishlistBooks = () => {
+  const location = useLocation();
+  const shortDesindingOrder = location.state;
   const allBookInfo = useLoaderData();
 
   const [wishBook, setWishBooks] = useState([]);
@@ -25,6 +27,31 @@ const WishlistBooks = () => {
     notify();
     setWishBooks(newRb);
   };
+
+  const [books, setBooks] = useState(wishBook);
+
+  useEffect(() => {
+    if (shortDesindingOrder) {
+      if (shortDesindingOrder.name === "rating") {
+        const sortRb = wishBook.sort((a, b) => b.rating - a.rating);
+        if (sortRb) {
+          setBooks(sortRb);
+        }
+      } else if (shortDesindingOrder.name === "Number-of-pages") {
+        const sortRb = wishBook.sort((a, b) => b.totalPages - a.totalPages);
+        if (sortRb) {
+          setBooks(sortRb);
+        }
+      } else if (shortDesindingOrder.name === "publisher-Year") {
+        const sortRb = wishBook.sort(
+          (a, b) => b.yearOfPublishing - a.yearOfPublishing
+        );
+        if (sortRb) {
+          setBooks(sortRb);
+        }
+      }
+    }
+  }, [shortDesindingOrder, wishBook]);
 
   return (
     <>
